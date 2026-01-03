@@ -12,7 +12,12 @@
     "actions": {
       "home-load-controller-set-state": {
         "title": "Set the state",
-        "titleFormatted": "Set the state to [[state]]"
+        "titleFormatted": "Set the state to [[state]]",
+        "args": {
+          "state": {
+            "title": "State"
+          }
+        }
       }
     }
   },
