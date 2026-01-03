@@ -55,5 +55,8 @@
   },
   "1.7.2": {
     "en": "Fixed an issue where an infinite loop for Meter devices could happen."
+  },
+  "1.8.0": {
+    "en": "Added Home Load Controller."
   }
 }
