@@ -163,12 +163,6 @@
         "meterPowerImportedCapability": "meter_power.charged",
         "meterPowerExportedCapability": "meter_power.discharged"
       },
-      "id": "evcharger",
-      "name": {
-        "de": "EV-Ladegerät",
-        "en": "EV Charger",
-        "nl": "EV Lader"
-      },
       "capabilitiesOptions": {
         "meter_power.charged": {
           "title": {
@@ -184,6 +178,70 @@
             "nl": "Totaal ontladen energie"
           }
         }
+      },
+      "id": "evcharger",
+      "name": {
+        "de": "EV-Ladegerät",
+        "en": "EV Charger",
+        "nl": "EV Lader"
+      }
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/home-load-controller/assets/images/small.png",
+        "large": "/drivers/home-load-controller/assets/images/large.png",
+        "xlarge": "/drivers/home-load-controller/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.svg"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Password"
+          }
+        }
+      ],
+      "class": "other",
+      "capabilities": [
+        "solaredge-home-load-controller-state"
+      ],
+      "id": "home-load-controller",
+      "name": {
+        "en": "Home Load Controller"
       }
     },
     {
@@ -247,12 +305,6 @@
         "meter_power.month",
         "meter_power.year"
       ],
-      "id": "inverter",
-      "name": {
-        "de": "Wechselrichter",
-        "en": "Inverter",
-        "nl": "Omvormer"
-      },
       "capabilitiesOptions": {
         "measure_power": {
           "title": {
@@ -289,6 +341,12 @@
             "nl": "Opgewekt dit jaar"
           }
         }
+      },
+      "id": "inverter",
+      "name": {
+        "de": "Wechselrichter",
+        "en": "Inverter",
+        "nl": "Omvormer"
       }
     },
     {
@@ -355,12 +413,6 @@
         "cumulativeImportedCapability": "meter_power.imported",
         "cumulativeExportedCapability": "meter_power.exported"
       },
-      "id": "meter",
-      "name": {
-        "de": "Zähler",
-        "en": "Meter",
-        "nl": "Meter"
-      },
       "capabilitiesOptions": {
         "meter_power.imported": {
           "title": {
@@ -390,9 +442,155 @@
             "nl": "Zonne Energie"
           }
         }
+      },
+      "id": "meter",
+      "name": {
+        "de": "Zähler",
+        "en": "Meter",
+        "nl": "Meter"
       }
     }
   ],
+  "flow": {
+    "actions": [
+      {
+        "id": "home-load-controller-set-state",
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=home-load-controller"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "title": {
+                  "en": "On",
+                  "nl": "Aan",
+                  "de": "Ein",
+                  "fr": "Activé",
+                  "it": "Acceso",
+                  "es": "Encendido",
+                  "sv": "På",
+                  "da": "Til",
+                  "fi": "Päällä",
+                  "no": "På",
+                  "ru": "Включено",
+                  "ko": "켜기"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "Off",
+                  "nl": "Uit",
+                  "de": "Aus",
+                  "fr": "Désactivé",
+                  "it": "Spento",
+                  "es": "Apagado",
+                  "sv": "Av",
+                  "da": "Fra",
+                  "fi": "Pois päältä",
+                  "no": "Av",
+                  "ru": "Выключено",
+                  "ko": "끄기"
+                }
+              },
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Auto",
+                  "nl": "Auto",
+                  "de": "Auto",
+                  "fr": "Auto",
+                  "it": "Auto",
+                  "es": "Auto",
+                  "sv": "Auto",
+                  "da": "Auto",
+                  "fi": "Auto",
+                  "no": "Auto",
+                  "ru": "Авто",
+                  "ko": "자동"
+                }
+              }
+            ]
+          }
+        ],
+        "title": {
+          "en": "Set the state"
+        },
+        "titleFormatted": {
+          "en": "Set the state to [[state]]"
+        }
+      }
+    ]
+  },
+  "capabilities": {
+    "solaredge-home-load-controller-state": {
+      "type": "enum",
+      "getable": true,
+      "setable": true,
+      "values": [
+        {
+          "id": "on",
+          "title": {
+            "en": "On",
+            "nl": "Aan",
+            "de": "Ein",
+            "fr": "Activé",
+            "it": "Acceso",
+            "es": "Encendido",
+            "sv": "På",
+            "da": "Til",
+            "fi": "Päällä",
+            "no": "På",
+            "ru": "Включено",
+            "ko": "켜기"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off",
+            "nl": "Uit",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Spento",
+            "es": "Apagado",
+            "sv": "Av",
+            "da": "Fra",
+            "fi": "Pois päältä",
+            "no": "Av",
+            "ru": "Выключено",
+            "ko": "끄기"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto",
+            "nl": "Auto",
+            "de": "Auto",
+            "fr": "Auto",
+            "it": "Auto",
+            "es": "Auto",
+            "sv": "Auto",
+            "da": "Auto",
+            "fi": "Auto",
+            "no": "Auto",
+            "ru": "Авто",
+            "ko": "자동"
+          }
+        }
+      ],
+      "title": {
+        "en": "State"
+      }
+    }
+  },
   "name": {
     "de": "SolarEdge",
     "en": "SolarEdge",

@@ -3,6 +3,19 @@
     "name": "SolarEdge",
     "description": "Powering People's Lives Around the World"
   },
+  "$capabilities": {
+    "solaredge-home-load-controller-state": {
+      "title": "State"
+    }
+  },
+  "$flow": {
+    "actions": {
+      "home-load-controller-set-state": {
+        "title": "Set the state",
+        "titleFormatted": "Set the state to [[state]]"
+      }
+    }
+  },
   "$drivers": {
     "battery": {
       "name": "Battery",
@@ -84,6 +97,17 @@
         },
         "measure_power.solar": {
           "title": "Solar Power"
+        }
+      }
+    },
+    "home-load-controller": {
+      "name": "Home Load Controller",
+      "settings": {
+        "username": {
+          "label": "Username"
+        },
+        "password": {
+          "label": "Password"
         }
       }
     }
