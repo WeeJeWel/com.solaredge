@@ -58,5 +58,8 @@
   },
   "1.8.0": {
     "en": "Added Home Load Controller."
+  },
+  "1.8.1": {
+    "en": "Added icon for Home Load Controller."
   }
 }
